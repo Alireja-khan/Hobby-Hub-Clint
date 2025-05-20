@@ -41,26 +41,40 @@ const Navbar = () => {
 
             <div className="navbar-end">
                 {user ? (
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
+
+
+                    <div className="relative group dropdown-end">
+                        <div
+                            role="button"
+                            className="btn btn-ghost btn-circle avatar"
+                        >
+                            <div className="w-10 h-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden">
                                 {user.photoURL && (
-                                    <img src={user.photoURL} alt="Profile" />
+                                    <img src={user.photoURL} alt="Profile" className="object-cover w-full h-full" />
                                 )}
                             </div>
                         </div>
+
                         <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow z-[1]"
+                            className="absolute right-0 mt-3 w-56 bg-white text-gray-800 rounded-xl shadow-lg ring-1 ring-gray-200 p-3 z-[1] opacity-0 invisible group-hover:visible group-hover:opacity-100 transition-all duration-200"
                         >
-                            <li className='mb-2'>
-                                <p className="text-sm font-semibold">{user.displayName}</p>
+                            <li className="mb-3 border-b pb-2">
+                                <p className="text-sm font-medium">{user.displayName}</p>
                             </li>
                             <li>
-                                <button onClick={handleLogOut} className="btn btn-sm">Log Out</button>
+                                <button
+                                    onClick={handleLogOut}
+                                    className="w-full text-left px-4 py-2 rounded-md text-sm hover:bg-gray-100 transition-colors duration-200"
+                                >
+                                    Log Out
+                                </button>
                             </li>
                         </ul>
                     </div>
+
+
+
+
                 ) : (
                     <div className="flex gap-2 mr-2">
                         <Link to="/login" className="btn btn-sm">Login</Link>
