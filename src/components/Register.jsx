@@ -1,28 +1,32 @@
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../services/firebase.init';
-import Swal from 'sweetalert2';
+import { AuthContext } from '../context/AuthProvider';  
 
 const Register = () => {
 
-    const { createUser, setUser } = use(AuthContext);
+    const { setUser } = use(AuthContext);
+    const navigate = useNavigate();
+
+
+    const [nameError, setNameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    console.log(createUser);
 
-    const navigate = useNavigate()
-
-    const handleSignUp = e => {
+    const handleRegister = (e) => {
         e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const password = formData.get('password')
+        const name = e.target.name.value;
+        const password = e.target.password.value;
+        const email = e.target.email.value;
         console.log(name, email, password);
 
 
+        if (name.length < 5) {
+            setNameError("Name should be more than 5 characters");
+            return;
+        } else {
+            setNameError("");
+        }
 
 
         const uppercaseRegex = /[A-Z]/;
@@ -40,24 +44,6 @@ const Register = () => {
         } else {
             setPasswordError("");
         }
-
-
-
-        createUser(email, password)
-            .then(result => {
-                console.log(result.user);
-                navigate('/')
-                Swal.fire({
-                    icon: "success",
-                    title: "Your registration is successful.",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            })
-            .catch(error => {
-                console.log(error)
-            })
-
     };
 
     const handleGoogleSignUp = () => {
@@ -66,7 +52,9 @@ const Register = () => {
             .then((result) => {
                 const user = result.user;
                 setUser(user);
-                localStorage.setItem('currentUserId', user.id);
+                localStorage.setItem('currentUserId', user.uid);
+                navigate('/');
+                // console.log('User signed up with Google:', user);
             })
             .catch((error) => {
                 alert(error.message);
@@ -76,17 +64,9 @@ const Register = () => {
     return (
         <div>
 
-
             <div className="navbar bg-white shadow-md px-4 sticky top-0 z-50 flex justify-center">
-                <div>
-                    <Link to="/" className="flex justify-center items-center gap-2">
-                        <span className="text-2xl rounded-lg p-3 font-bold hover:bg-[#2a2e37]/10">
-                            HobbyHub
-                        </span>
-                    </Link>
-                </div>
+                <Link to="/" className="text-2xl font-bold hover:bg-gray-100 p-3 rounded-lg">HobbyHub</Link>
             </div>
-
 
             <div className="hero bg-base-200 min-h-screen pb-40">
                 <div className="hero-content max-w-xl w-full">
@@ -94,14 +74,13 @@ const Register = () => {
                         <div className="card-body">
                             <h1 className='text-2xl text-center mb-5'>Register Your Account</h1>
                             <hr className='mb-8' />
-
-                            <form onSubmit={handleSignUp}>
+                            <form onSubmit={handleRegister}>
                                 <label className="label text-lg">Name</label>
                                 <input type="text" name='name' className="input input-bordered w-full" placeholder="Name" required />
 
-                                {/* {
+                                {
                                     nameError && <p className='text-xs text-error'>{nameError}</p>
-                                } */}
+                                }
 
                                 <label className="label text-lg">Photo URL</label>
                                 <input type="text" name='photo' className="input input-bordered w-full" placeholder="Photo URL" required />
@@ -136,8 +115,6 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-
-
         </div>
     );
 };
