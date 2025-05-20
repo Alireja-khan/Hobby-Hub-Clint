@@ -1,14 +1,17 @@
 import React, { use, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../services/firebase.init';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
     const { createUser, setUser } = use(AuthContext);
-    const [passwordError, setPasswordError] = useState(""); 
+    const [passwordError, setPasswordError] = useState("");
     console.log(createUser);
+
+    const navigate = useNavigate()
 
     const handleSignUp = e => {
         e.preventDefault();
@@ -41,12 +44,19 @@ const Register = () => {
 
 
         createUser(email, password)
-        .then(result => {
-            console.log(result.user)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(result => {
+                console.log(result.user);
+                navigate('/')
+                Swal.fire({
+                    icon: "success",
+                    title: "Your registration is successful.",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
     };
 
