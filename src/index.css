@@ -2,3 +2,8 @@
 @plugin "daisyui" {
   themes: light --default
 }
+
+.active {
+  background-color: rgba(42, 46, 55, 0.1);
+  color: rgba(0, 0, 0, 0.7);
+} 
