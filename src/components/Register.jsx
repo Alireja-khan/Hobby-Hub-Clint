@@ -1,10 +1,11 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
 
     const { createUser } = use(AuthContext);
+    const [passwordError, setPasswordError] = useState(""); 
     console.log(createUser);
 
     const handleSignUp = e => {
@@ -15,6 +16,27 @@ const Register = () => {
         const email = formData.get('email');
         const password = formData.get('password')
         console.log(name, email, password);
+
+
+
+
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+
+        if (password.length < 6) {
+            setPasswordError("Password must be at least 6 characters long.");
+            return;
+        } else if (!uppercaseRegex.test(password)) {
+            setPasswordError("Password must contain at least one uppercase letter.");
+            return;
+        } else if (!lowercaseRegex.test(password)) {
+            setPasswordError("Password must contain at least one lowercase letter.");
+            return;
+        } else {
+            setPasswordError("");
+        }
+
+
 
         createUser(email, password)
         .then(result => {
@@ -64,9 +86,9 @@ const Register = () => {
 
                                 <label className="label text-lg">Password</label>
                                 <input type="password" name='password' className="input input-bordered w-full" placeholder="Password" required />
-                                {/* {
+                                {
                                     passwordError && <p className='text-xs text-error mt-3'>{passwordError}</p>
-                                } */}
+                                }
 
 
                                 <button type='submit' className="btn btn-neutral mt-4 w-full mb-4">Register</button>
