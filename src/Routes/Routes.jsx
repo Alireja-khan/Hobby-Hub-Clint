@@ -40,7 +40,8 @@ export const router = createBrowserRouter([
                 </PrivateRoute>,
             },
             {
-                path: "/updateGroup",
+                path: "/updateGroup/:id",
+                loader: ({ params }) => fetch(`http://localhost:5000/groups/${params.id}`),
                 element: <PrivateRoute>
                     <UpdateGroup></UpdateGroup>
                 </PrivateRoute>,

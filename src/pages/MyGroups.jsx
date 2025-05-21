@@ -100,22 +100,19 @@ const MyGroups = () => {
                                 <td className="px-6 py-4">{group.startDate}</td>
                                 <td className="px-6 py-4 truncate max-w-xs">{group.description}</td>
                                 <td className="px-6 py-4 space-x-2">
+
                                     <button
-                                        onClick={() => alert('Update functionality coming soon')}
-                                        className="bg-blue-500 btn text-white px-4 py-1 text-sm hover:bg-blue-600 transition"
-                                    >
-                                        Update
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(group._id)}
-                                        className="bg-red-500 btn text-white px-4 py-1 text-sm hover:bg-red-600 transition"
-                                    >
-                                        Delete
+                                        onClick={() => handleDelete(group._id)} className="bg-red-500 btn text-white px-4 py-1 text-sm hover:bg-red-600 transition">Delete
                                     </button>
 
                                     <Link to={`/groupDetails/${group._id}`}>
                                         <button className='btn'>Details</button>
                                     </Link>
+                                    
+                                    <Link to={`/updateGroup/${group._id}`}>
+                                        <button className='btn'>Update</button>
+                                    </Link>
+                                    
 
                                 </td>
                             </tr>
