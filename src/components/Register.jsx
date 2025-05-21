@@ -2,11 +2,11 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../services/firebase.init';
-import { AuthContext } from '../context/AuthProvider';  
+import { AuthContext } from '../context/AuthProvider';
 
 const Register = () => {
 
-    const { setUser } = use(AuthContext);
+    const { setUser, createUser, updateUser } = use(AuthContext);
     const navigate = useNavigate();
 
 
@@ -18,6 +18,8 @@ const Register = () => {
         const name = e.target.name.value;
         const password = e.target.password.value;
         const email = e.target.email.value;
+        const photo = e.target.photo.value;
+
         console.log(name, email, password);
 
 
@@ -44,6 +46,29 @@ const Register = () => {
         } else {
             setPasswordError("");
         }
+
+
+        // Firebase auth
+        createUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                updateUser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        setUser({ ...user, displayName: name, photoURL: photo });
+                        localStorage.setItem('currentUserId', user.uid);
+                        navigate("/");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        setUser(user);
+                        localStorage.setItem('currentUserId', user.uid);
+                    });
+
+                setUser(user);
+            })
+            .catch((error) => {
+                alert(error.message);
+            });
     };
 
     const handleGoogleSignUp = () => {

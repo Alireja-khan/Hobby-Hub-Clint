@@ -23,7 +23,14 @@ const CreateGroup = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const newGroup = Object.fromEntries(formData.entries());
+    // const newGroup = Object.fromEntries(formData.entries());
+
+    const newGroup = {
+      ...Object.fromEntries(formData.entries()),
+      creatorEmail: user.email // Add this
+    };
+
+    
     console.log(newGroup);
 
 
