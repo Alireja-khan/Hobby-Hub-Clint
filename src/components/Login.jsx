@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthProvider'; // Make sure this path is correct
 import { auth } from '../services/firebase.init';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const [error, setError] = useState("");
@@ -11,13 +12,19 @@ const Login = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
-    const { signIn, setUser } = useContext(AuthContext); // ✅ Corrected hook
+    const { signIn, setUser } = useContext(AuthContext);
 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
             .then(result => {
                 setUser(result.user);
                 navigate(location.state || "/");
+                Swal.fire({
+                    icon: "success",
+                    title: "Your are Successfully Signed In",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
             .catch(error => {
                 setError(error.code);
@@ -37,6 +44,12 @@ const Login = () => {
                 localStorage.setItem('currentUserId', user.email);
                 toast.success('Successfully logged in');
                 navigate(location.state || "/");
+                Swal.fire({
+                    icon: "success",
+                    title: "Your are Successfully Signed In",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
             .catch((error) => {
                 const errorCode = error.code;

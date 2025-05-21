@@ -3,6 +3,7 @@ import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../services/firebase.init';
 import { AuthContext } from '../context/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Register = () => {
 
@@ -57,6 +58,12 @@ const Register = () => {
                         setUser({ ...user, displayName: name, photoURL: photo });
                         localStorage.setItem('currentUserId', user.uid);
                         navigate("/");
+                        Swal.fire({
+                            icon: "success",
+                            title: "Your are Successfully Registered",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     })
                     .catch((error) => {
                         console.log(error);
@@ -79,6 +86,12 @@ const Register = () => {
                 setUser(user);
                 localStorage.setItem('currentUserId', user.uid);
                 navigate('/');
+                Swal.fire({
+                    icon: "success",
+                    title: "Your are Successfully Signed Up",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 // console.log('User signed up with Google:', user);
             })
             .catch((error) => {
