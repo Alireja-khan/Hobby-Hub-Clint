@@ -20,6 +20,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 path: "/",
+                loader: ()=> fetch('http://localhost:5000/groups'),
                 element: <Home></Home>,
             },
             {

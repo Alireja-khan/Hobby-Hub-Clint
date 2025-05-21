@@ -1,6 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const hobbyCategories = [
   'Drawing & Painting',
@@ -14,10 +15,16 @@ const hobbyCategories = [
   'Other',
 ];
 
+const statusCategories = [
+  'ongoing'
+]
+
 const CreateGroup = () => {
 
   const { user } = use(AuthContext);
   console.log(user.displayName, user.email)
+
+  const navigate = useNavigate();
 
   const handleAddGroup = (e) => {
     e.preventDefault();
@@ -30,7 +37,7 @@ const CreateGroup = () => {
       creatorEmail: user.email // Add this
     };
 
-    
+
     console.log(newGroup);
 
 
@@ -44,6 +51,7 @@ const CreateGroup = () => {
       .then(res => res.json())
       .then(data => {
         if (data.insertedId) {
+          navigate('/')
 
           console.log("after adding groups to db", data);
           Swal.fire({
@@ -108,6 +116,16 @@ const CreateGroup = () => {
               <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
               <input type="url" name="imageUrl" required className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-gray-500" />
             </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+              <select name="status" required className="w-full px-4 py-2 border rounded-lg bg-white focus:ring-2 focus:ring-gray-500">
+                {statusCategories.map((category, idx) => (
+                  <option key={idx} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>

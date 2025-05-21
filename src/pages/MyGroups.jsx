@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { TiGroup } from "react-icons/ti";
+import { AuthContext } from '../context/AuthProvider';
 
 const MyGroups = () => {
-    const initialMyGroups = useLoaderData();
-    console.log(initialMyGroups)
+    const { user } = useContext(AuthContext);
+    const [myGroups, setMyGroups] = useState([]);
 
-    const [myGroups, setMyGroup] = useState(initialMyGroups)
-
+    useEffect(() => {
+        if (user?.email) {
+            fetch(`http://localhost:5000/groups?creatorEmail=${user.email}`)
+                .then(res => res.json())
+                .then(data => setMyGroups(data));
+        }
+    }, [user]);
 
     const handleDelete = async (_id) => {
-        console.log(_id);
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -22,31 +26,24 @@ const MyGroups = () => {
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            console.log(result.isConfirmed)
-
             if (result.isConfirmed) {
-
                 fetch(`http://localhost:5000/groups/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then(data => {
                         if (data.deletedCount) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your Group has been deleted.",
-                                icon: "success"
-                            });
+                            Swal.fire("Deleted!", "Your Group has been deleted.", "success");
 
                             const remainingGroups = myGroups.filter(group => group._id !== _id);
-                            setMyGroup(remainingGroups);
+                            setMyGroups(remainingGroups);
                         }
-                    })
-
-                // 
+                    });
             }
         });
     };
+
+
 
     return (
         <div className="p-6">
@@ -57,7 +54,7 @@ const MyGroups = () => {
 
                 <div className="max-w-5xl mx-auto mt-10 bg-gray-100 border border-gray-300  px-6 py-8 rounded-2xl shadow hover:shadow-lg transition text-center animate-fadeIn">
                     <div className="flex flex-col py-15 items-center space-y-4">
-                        <TiGroup size={100} className="text-blue-500    "/>
+                        <TiGroup size={100} className="text-blue-500    " />
                         <h2 className="text-2xl font-semibold">No Groups Created</h2>
                         <p className="text-gray-600">
                             You haven’t created any groups yet. Start building your first group now!
@@ -73,7 +70,8 @@ const MyGroups = () => {
 
 
             ) : (
-                <div className="overflow-x-auto shadow-lg rounded-lg overflow-hidden">
+
+                <div className="overflow-x-auto mt-10 shadow-lg rounded-lg overflow-hidden">
                     <table className="w-full max-w-7xl mx-auto bg-white">
                         <thead>
                             <tr className="bg-gradient-to-r from-blue-100 to-blue-200 text-gray-700 text-sm uppercase tracking-wider">
@@ -115,9 +113,7 @@ const MyGroups = () => {
                                             Delete
                                         </button>
 
-                                        <Link to={`/groupDetails/${group._id}`}>
-                                            <button className='btn'>Details</button>
-                                        </Link>
+                                        
 
                                         <Link to={`/updateGroup/${group._id}`}>
                                             <button className='btn'>Update</button>
@@ -128,6 +124,8 @@ const MyGroups = () => {
                         </tbody>
                     </table>
                 </div>
+
+                
             )}
         </div>
     );
