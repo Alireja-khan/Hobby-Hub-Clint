@@ -1,5 +1,6 @@
 import React, { use } from 'react';
 import { AuthContext } from '../context/AuthProvider';
+import Swal from 'sweetalert2';
 
 const hobbyCategories = [
   'Drawing & Painting',
@@ -33,10 +34,19 @@ const CreateGroup = () => {
       },
       body: JSON.stringify(newGroup)
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log("after adding groups to db", data);
-    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+
+          console.log("after adding groups to db", data);
+          Swal.fire({
+            icon: "success",
+            title: "Group Create Successfully!",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
 
 
   };

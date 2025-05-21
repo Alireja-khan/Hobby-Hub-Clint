@@ -22,6 +22,7 @@ const Navbar = () => {
             <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/createGroup">Create Group</NavLink>
             <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/myGroup">My Groups</NavLink>
             <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/updateGroup">Update Group</NavLink>
+            <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/groupDetails/:id">Group Details</NavLink>
         </>
     );
 
