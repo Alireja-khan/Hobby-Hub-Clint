@@ -7,12 +7,11 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const Login = () => {
     const [error, setError] = useState("");
-    const [user, setUser] = useState(null);
     const provider = new GoogleAuthProvider();
 
     const location = useLocation();
     const navigate = useNavigate();
-    const { signIn } = useContext(AuthContext); // ✅ Corrected hook
+    const { signIn, setUser } = useContext(AuthContext); // ✅ Corrected hook
 
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
