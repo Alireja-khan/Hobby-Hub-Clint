@@ -10,6 +10,7 @@ import MyGroups from '../pages/MyGroups'
 import UpdateGroup from '../pages/UpdateGroup'
 import PrivateRoute from '../context/PrivateRoute';
 import GroupDetails from '../pages/GroupDetails';
+import NotFound from '../pages/NotFound';
 
 
 export const router = createBrowserRouter([
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register></Register>,
+    },
+    {
+        path: "*",
+        element: <NotFound></NotFound>,
     },
 
 ])

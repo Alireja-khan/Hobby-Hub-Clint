@@ -19,17 +19,17 @@ const Navbar = () => {
 
     const navLinks = (
         <>
-            <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/">Home</NavLink>
-            <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/allGroups">All Groups</NavLink>
-            <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/createGroup">Create Group</NavLink>
-            <NavLink className="px-3 py-2 rounded-lg hover:bg-[#2a2e37]/10 transition font-semibold" to="/myGroup">My Groups</NavLink>
+            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/">Home</NavLink>
+            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/allGroups">All Groups</NavLink>
+            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/createGroup">Create Group</NavLink>
+            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/myGroup">My Groups</NavLink>
         </>
     );
 
     return (
         <div className="navbar bg-white shadow-md px-4 sticky top-0 z-50">
             <div className="navbar-start">
-                <Link to="/" className="text-2xl font-bold rounded-lg p-3 hover:bg-[#2a2e37]/10">
+                <Link to="/" className="text-2xl font-bold rounded-lg p-3 hover:shadow-lg transition">
                     HobbyHub
                 </Link>
             </div>
