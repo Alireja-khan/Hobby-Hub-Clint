@@ -1,12 +1,79 @@
-# React + Vite
+# 🌟 HobbyHub – A Local Hobby Group Organizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Website:**   
+📦 **Client Repo:**     (https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-Alireja-khan)  
+🛠 **Server Repo:**      (https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Alireja-khan)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Key Features
 
-## Expanding the ESLint configuration
+- 👤 **Authentication & Authorization**  
+  Email/Password + Google Login, Private Routes, and Role-based data display. Auth state persists even after refreshing.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🧩 **Create & Join Hobby Groups**  
+  Users can create or join groups like painting, hiking, gaming, etc. with real-time validation.
+
+- 📊 **Group Management System**  
+  Logged-in users can view, update, or delete their own created groups from "My Groups" page.
+
+- 🔐 **Protected Routes & Environment Variables**  
+  Private routes for Create, My Groups, and Group Details. Firebase and MongoDB credentials are secured using `.env`.
+
+- 🖼️ **Beautiful Responsive UI**  
+  Built using Tailwind CSS, with clean layouts, Lottie animations, Typewriter effect, and theme toggle (dark/light).
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, React Router, Tailwind CSS, Vite
+- **Authentication**: Firebase
+- **Backend**: Node.js, Express, MongoDB
+- **Hosting**: Surge (Client), Vercel (Server)
+- **Packages Used**:
+  - `react-awesome-reveal` – for animations
+  - `react-simple-typewriter` – for banner text effect
+  - `react-hot-toast` – for error/success messages
+  - `sweetalert2` – for action confirmations
+  - `lottie-react` – for 404 & loading animations
+
+---
+
+## 📱 Responsiveness
+
+The website is fully responsive and works across:
+
+- Mobile Devices 📱  
+- Tablets 💻  
+- Desktop Monitors 🖥️  
+
+---
+
+## ❌ 404 Not Found Page
+
+A custom 404 page with Lottie background and redirect option.
+
+---
+
+## 💡 Extra Challenges Implemented
+
+- 🔄 Theme toggle (Light/Dark mode)
+- ✅ Custom toast and SweetAlert feedback
+- ✅ Avoided use of Lorem Ipsum and default browser alerts
+
+---
+
+## 📝 Environment Variables
+
+Firebase and MongoDB sensitive keys are stored securely in `.env.local`.
+
+---
+
+## 🔒 Protected Routes
+
+Pages like Create Group, Group Details, My Groups, and Update Group are protected and redirect unauthorized users.
+
+---
+
+Feel free to explore the platform and connect through hobbies with **HobbyHub**! 🚀
