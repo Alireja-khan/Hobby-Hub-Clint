@@ -1,6 +1,6 @@
 # 🌟 HobbyHub – A Local Hobby Group Organizer
 
-🔗 **Live Website:**   
+🔗 **Live Website:**     (https://hobbyhub-app.web.app/)
 📦 **Client Repo:**     (https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-Alireja-khan)  
 🛠 **Server Repo:**      (https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Alireja-khan)
 
@@ -37,6 +37,9 @@
   - `react-hot-toast` – for error/success messages
   - `sweetalert2` – for action confirmations
   - `lottie-react` – for 404 & loading animations
+  - `react-countup` – for count animations
+  - `react-simple-typewriter` – for type animations
+  - `react-icons/go` – for icons
 
 ---
 
@@ -58,7 +61,6 @@ A custom 404 page with Lottie background and redirect option.
 
 ## 💡 Extra Challenges Implemented
 
-- 🔄 Theme toggle (Light/Dark mode)
 - ✅ Custom toast and SweetAlert feedback
 - ✅ Avoided use of Lorem Ipsum and default browser alerts
 
