@@ -7,7 +7,7 @@ const AllGroups = () => {
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/groups')
+        fetch('https://hobbyhub-server-three.vercel.app/groups')
             .then(res => res.json())
             .then(data => setGroups(data));
     }, []);

@@ -38,7 +38,7 @@ const CreateGroup = () => {
 
     console.log(newGroup);
 
-    fetch('http://localhost:5000/groups', {
+    fetch('https://hobbyhub-server-three.vercel.app/groups', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

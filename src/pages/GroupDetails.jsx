@@ -14,10 +14,11 @@ const GroupDetails = () => {
         <div className="px-4 sm:px-6 lg:px-8 py-8 max-w-4xl mx-auto bg-white shadow-xl rounded-2xl mt-10">
             <Toaster position="top-right" />
 
+            {/* Fixed image display: object-contain + bg */}
             <img
                 src={group.imageUrl}
                 alt={group.groupName}
-                className="w-full h-56 sm:h-64 md:h-72 lg:h-80 object-cover rounded-lg mb-6"
+                className="w-full max-h-96 object-contain bg-gray-100 rounded-lg mb-6"
             />
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center font-bold text-gray-800 mb-6">

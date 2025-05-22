@@ -21,12 +21,12 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 path: "/",
-                loader: () => fetch('http://localhost:5000/groups'),
+                loader: () => fetch('https://hobbyhub-server-three.vercel.app/groups'),
                 element: <Home></Home>,
             },
             {
                 path: "/allGroups",
-                loader: () => fetch('http://localhost:5000/groups'),
+                loader: () => fetch('https://hobbyhub-server-three.vercel.app/groups'),
                 element: <AllGroups></AllGroups>,
             },
             {
@@ -43,14 +43,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/updateGroup/:id",
-                loader: ({ params }) => fetch(`http://localhost:5000/groups/${params.id}`),
+                loader: ({ params }) => fetch(`https://hobbyhub-server-three.vercel.app/groups/${params.id}`),
                 element: <PrivateRoute>
                     <UpdateGroup></UpdateGroup>
                 </PrivateRoute>,
             },
             {
                 path: "/groupDetails/:id",
-                loader: ({ params }) => fetch(`http://localhost:5000/groups/${params.id}`),
+                loader: ({ params }) => fetch(`https://hobbyhub-server-three.vercel.app/groups/${params.id}`),
                 element: <PrivateRoute>
                     <GroupDetails></GroupDetails>
                 </PrivateRoute>,
