@@ -129,7 +129,7 @@ const UpdateGroup = () => {
 
 
                 <div className="text-center mt-8">
-                    <button type="submit" className="px-6 py-2 bg-blue-400 btn-block text-white rounded-lg hover:bg-blue-500 transition duration-200">
+                    <button type="submit" className="px-6 py-2 rounded-lg hover:shadow-2xl border w-full transition duration-200">
                         Update
                     </button>
                 </div>

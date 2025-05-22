@@ -18,12 +18,11 @@ const hobbyCategories = [
 const statusCategories = [
   'ongoing',
   'outgoing'
-]
+];
 
 const CreateGroup = () => {
-
   const { user } = use(AuthContext);
-  console.log(user.displayName, user.email)
+  console.log(user.displayName, user.email);
 
   const navigate = useNavigate();
 
@@ -31,16 +30,13 @@ const CreateGroup = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    // const newGroup = Object.fromEntries(formData.entries());
 
     const newGroup = {
       ...Object.fromEntries(formData.entries()),
-      creatorEmail: user.email // Add this
+      creatorEmail: user.email
     };
 
-
     console.log(newGroup);
-
 
     fetch('http://localhost:5000/groups', {
       method: 'POST',
@@ -52,7 +48,7 @@ const CreateGroup = () => {
       .then(res => res.json())
       .then(data => {
         if (data.insertedId) {
-          navigate('/')
+          navigate('/');
 
           console.log("after adding groups to db", data);
           Swal.fire({
@@ -62,23 +58,18 @@ const CreateGroup = () => {
             timer: 1500
           });
         }
-      })
-
-
+      });
   };
 
   return (
-
-
-    <div className="max-w-6xl mx-auto mt-20 p-10 bg-white rounded-2xl shadow-xl ring-1 ring-gray-200">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-10">Create a Hobby Group</h2>
+    <div className="max-w-6xl mx-auto mt-10 sm:mt-14 md:mt-20 px-4 sm:px-6 md:px-10 py-8 sm:py-10 bg-white rounded-2xl shadow-xl ring-1 ring-gray-200">
+      <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-6 sm:mb-10">Create a Hobby Group</h2>
 
       <form onSubmit={handleAddGroup}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Group Details */}
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Group Information</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Group Information</h3>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Group Name <span className="text-red-500">*</span></label>
@@ -115,8 +106,8 @@ const CreateGroup = () => {
               />
             </div>
 
-            <div className="flex gap-4">
-              <div className="w-1/2">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="w-full sm:w-1/2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Max Members <span className="text-red-500">*</span></label>
                 <input
                   type="number"
@@ -127,7 +118,7 @@ const CreateGroup = () => {
                 />
               </div>
 
-              <div className="w-1/2">
+              <div className="w-full sm:w-1/2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Start Date <span className="text-red-500">*</span></label>
                 <input
                   type="date"
@@ -150,14 +141,11 @@ const CreateGroup = () => {
                 ))}
               </select>
             </div>
-
-
           </div>
 
           {/* Description & Creator */}
           <div className="space-y-6">
-
-            <h3 className="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Details & Creator</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Details & Creator</h3>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Description <span className="text-red-500">*</span></label>
@@ -181,8 +169,6 @@ const CreateGroup = () => {
               />
             </div>
 
-
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
@@ -204,26 +190,18 @@ const CreateGroup = () => {
               </div>
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-10 sm:mt-12">
               <button
                 type="submit"
-                className=" hover:shadow-2xl border text-lg font-semibold py-3 px-8 rounded-xl shadow transition duration-300"
+                className="w-full sm:w-auto hover:shadow-2xl border text-base sm:text-lg font-semibold py-3 px-8 rounded-xl shadow transition duration-300"
               >
                 Create Group
               </button>
             </div>
-
-
           </div>
         </div>
-
-        {/* Submit Button */}
-
       </form>
     </div>
-
-
-
   );
 };
 
