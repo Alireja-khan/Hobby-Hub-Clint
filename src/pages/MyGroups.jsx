@@ -12,7 +12,10 @@ const MyGroups = () => {
         if (user?.email) {
             fetch(`http://localhost:5000/groups?creatorEmail=${user.email}`)
                 .then(res => res.json())
-                .then(data => setMyGroups(data));
+                .then(data => {
+                    console.log(data)
+                    setMyGroups(data);
+                });
         }
     }, [user]);
 
@@ -113,7 +116,7 @@ const MyGroups = () => {
                                             Delete
                                         </button>
 
-                                        
+
 
                                         <Link to={`/updateGroup/${group._id}`}>
                                             <button className='btn'>Update</button>
@@ -125,7 +128,7 @@ const MyGroups = () => {
                     </table>
                 </div>
 
-                
+
             )}
         </div>
     );

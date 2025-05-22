@@ -20,11 +20,12 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 path: "/",
-                loader: ()=> fetch('http://localhost:5000/groups'),
+                loader: () => fetch('http://localhost:5000/groups'),
                 element: <Home></Home>,
             },
             {
                 path: "/allGroups",
+                loader: () => fetch('http://localhost:5000/groups'),
                 element: <AllGroups></AllGroups>,
             },
             {
@@ -35,10 +36,6 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/myGroup",
-                loader: async () => {
-                    const email = localStorage.getItem('currentUserEmail'); // Or get from context
-                    return fetch(`http://localhost:5000/groups?email=${email}`);
-                },
                 element: <PrivateRoute>
                     <MyGroups></MyGroups>
                 </PrivateRoute>,

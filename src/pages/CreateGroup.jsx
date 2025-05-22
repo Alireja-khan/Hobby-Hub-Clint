@@ -16,7 +16,8 @@ const hobbyCategories = [
 ];
 
 const statusCategories = [
-  'ongoing'
+  'ongoing',
+  'outgoing'
 ]
 
 const CreateGroup = () => {
