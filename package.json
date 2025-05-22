@@ -24,6 +24,7 @@
     "react-simple-typewriter": "^5.0.1",
     "react-toastify": "^11.0.5",
     "react-tooltip": "^5.28.1",
+    "sonner": "^2.0.3",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.21.2",
     "tailwindcss": "^4.1.7"
