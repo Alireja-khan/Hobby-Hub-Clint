@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { TiGroup } from "react-icons/ti";
 import { AuthContext } from '../context/AuthProvider';
+import Loading from './Loading';
 
 const MyGroups = () => {
     const { user } = useContext(AuthContext);
     const [myGroups, setMyGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (user?.email) {
@@ -14,6 +16,7 @@ const MyGroups = () => {
                 .then(res => res.json())
                 .then(data => {
                     setMyGroups(data);
+                    setLoading(false);
                 });
         }
     }, [user]);
@@ -44,6 +47,8 @@ const MyGroups = () => {
         });
     };
 
+    if (loading) return <Loading />;
+
     return (
         <div className="px-4 sm:px-6 lg:px-8 py-6">
             <h1 className="text-2xl sm:text-3xl mt-10 font-bold text-center text-gray-800">My Groups</h1>
@@ -65,7 +70,7 @@ const MyGroups = () => {
                 </div>
             ) : (
                 <div className="overflow-x-auto mt-10 shadow-lg rounded-lg">
-                    <table className="max-w-max	 mb-20 mx-auto text-sm text-left text-gray-700 bg-white">
+                    <table className="max-w-max mb-20 mx-auto text-sm text-left text-gray-700 bg-white">
                         <thead>
                             <tr className="bg-gradient-to-r from-blue-100 to-blue-200 text-gray-700 text-xs sm:text-sm uppercase tracking-wider">
                                 <th className="px-4 py-3">Image</th>

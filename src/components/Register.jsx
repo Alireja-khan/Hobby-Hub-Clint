@@ -90,14 +90,14 @@ const Register = () => {
 
     return (
         <div>
-            {/* Top Navbar */}
+
             <div className="navbar bg-white shadow-md px-4 sticky top-0 z-50 flex justify-center">
                 <Link to="/" className="text-2xl font-bold hover:bg-gray-100 p-3 rounded-lg">
                     HobbyHub
                 </Link>
             </div>
 
-            {/* Registration Form Section */}
+
             <div className="hero bg-base-200 min-h-screen py-10 px-4">
                 <div className="hero-content w-full max-w-2xl">
                     <div className="card bg-base-100 w-full shadow-2xl p-6">

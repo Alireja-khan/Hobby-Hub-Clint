@@ -65,12 +65,12 @@ const Login = () => {
 
     return (
         <div>
-            {/* Top Navbar */}
+
             <div className="bg-white shadow-md px-4 py-3 sticky top-0 z-50 flex justify-center">
                 <Link to="/" className="text-2xl font-bold hover:bg-gray-100 p-2 rounded-md">HobbyHub</Link>
             </div>
 
-            {/* Login Form Section */}
+
             <div className="bg-base-200 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="w-full max-w-md bg-base-100 p-8 rounded-lg shadow-xl">
                     <h1 className="text-2xl font-bold text-center mb-6">Login to Your Account</h1>

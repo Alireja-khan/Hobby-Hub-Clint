@@ -67,7 +67,7 @@ const CreateGroup = () => {
 
       <form onSubmit={handleAddGroup}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {/* Group Details */}
+
           <div className="space-y-6">
             <h3 className="text-lg sm:text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Group Information</h3>
 
@@ -143,7 +143,7 @@ const CreateGroup = () => {
             </div>
           </div>
 
-          {/* Description & Creator */}
+
           <div className="space-y-6">
             <h3 className="text-lg sm:text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Details & Creator</h3>
 

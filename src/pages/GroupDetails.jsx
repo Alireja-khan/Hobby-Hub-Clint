@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { FaMapMarkerAlt, FaUsers, FaCalendarAlt, FaTag } from "react-icons/fa";
 import { Toaster, toast } from 'sonner';
+import Loading from './Loading';
 
 const GroupDetails = () => {
-    const group = useLoaderData();
+    const groupData = useLoaderData();
+    const [group, setGroup] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+
+        const timer = setTimeout(() => {
+            setGroup(groupData);
+            setLoading(false);
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [groupData]);
 
     const handleJoin = () => {
         toast.success('You have joined the group!');
     };
 
+    if (loading || !group) return <Loading />;
+
     return (
         <div className="px-4 sm:px-6 lg:px-8 py-8 max-w-4xl mx-auto bg-white shadow-xl rounded-2xl mt-10">
             <Toaster position="top-right" />
 
-            {/* Fixed image display: object-contain + bg */}
             <img
                 src={group.imageUrl}
                 alt={group.groupName}
@@ -56,7 +70,6 @@ const GroupDetails = () => {
                 </div>
             </div>
 
-            {/* Join Button */}
             <div className="mt-8 text-center">
                 <button
                     onClick={handleJoin}

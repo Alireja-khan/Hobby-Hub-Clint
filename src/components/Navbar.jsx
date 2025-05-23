@@ -30,13 +30,13 @@ const Navbar = () => {
 
     return (
         <div className="navbar bg-white shadow-md px-4 sticky top-0 z-50 flex flex-wrap items-center justify-between">
-            {/* Left Logo */}
+
             <div className="navbar-start flex items-center justify-between w-full lg:w-auto">
                 <Link to="/" className="text-2xl font-bold rounded-lg p-3 hover:shadow-lg transition">
                     HobbyHub
                 </Link>
 
-                {/* Mobile Menu Button */}
+
                 <div className="lg:hidden">
                     <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-2xl">
                         {isMenuOpen ? <FiX /> : <FiMenu />}
@@ -44,14 +44,14 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Center Links */}
+
             <div className={`w-full lg:w-auto ${isMenuOpen ? 'block' : 'hidden'} lg:flex navbar-center`}>
                 <ul className="flex flex-col lg:flex-row gap-2 lg:gap-4 mt-4 lg:mt-0">
                     {navLinks}
                 </ul>
             </div>
 
-            {/* Right Avatar or Auth Buttons */}
+
             <div className={`w-full lg:w-auto ${isMenuOpen ? 'block mt-4' : 'hidden'} lg:flex lg:items-center navbar-end`}>
                 {user ? (
                     <div className="relative group dropdown-end">

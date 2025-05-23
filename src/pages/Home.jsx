@@ -6,15 +6,26 @@ import { Fade } from 'react-awesome-reveal';
 import CountUp from 'react-countup';
 import { FaTag, FaUsers, FaLayerGroup, FaCalendarCheck } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
+import Loading from './Loading';
 
 const Home = () => {
     const [groups, setGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('https://hobbyhub-server-three.vercel.app/featured-groups')
             .then(res => res.json())
-            .then(data => setGroups(data));
+            .then(data => {
+                setGroups(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching featured groups:', error);
+                setLoading(false);
+            });
     }, []);
+
+    if (loading) return <Loading />;
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -70,14 +81,14 @@ const Home = () => {
                             <p className="flex items-center gap-2 text-sm text-gray-700 mb-1">
                                 <FaTag /> <span className="font-semibold">Category:</span> {group.hobbyCategory}
                             </p>
-                            
+
                             <p className="flex items-start gap-2 text-sm text-gray-700 max-h-24 overflow-auto">
                                 <MdDescription className="mt-1" />
                                 <span>
                                     <span className="font-semibold">Description:</span> {group.description}
                                 </span>
                             </p>
-                            
+
                             <Link to={`/groupDetails/${group._id}`} className="mt-auto">
                                 <button className="w-full mt-5 bg-blue-100 hover:bg-blue-200 text-black font-bold py-2 px-4 rounded-xl shadow transition duration-300 ease-in-out">
                                     View Details

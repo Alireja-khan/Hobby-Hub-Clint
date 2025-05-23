@@ -1,16 +1,25 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 const AllGroups = () => {
     const { user } = useContext(AuthContext);
     const [groups, setGroups] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://hobbyhub-server-three.vercel.app/groups')
-            .then(res => res.json())
-            .then(data => setGroups(data));
-    }, []);
+        if (user?.email) {
+            fetch(`https://hobbyhub-server-three.vercel.app/groups?creatorEmail=${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setGroups(data);
+                    setLoading(false);
+                });
+        }
+    }, [user]);
+
+    if (loading) return <Loading />;
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
