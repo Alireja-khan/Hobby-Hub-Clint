@@ -26,7 +26,6 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/allGroups",
-                loader: ({ params }) => (`https://hobbyhub-server-three.vercel.app/groups?creatorEmail=${params.email}`),
                 element: <AllGroups></AllGroups>,
             },
             {

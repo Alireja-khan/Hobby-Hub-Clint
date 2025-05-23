@@ -9,15 +9,19 @@ const AllGroups = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (user?.email) {
-            fetch(`https://hobbyhub-server-three.vercel.app/groups?creatorEmail=${user.email}`)
-                .then(res => res.json())
-                .then(data => {
-                    setGroups(data);
-                    setLoading(false);
-                });
-        }
+        const emailParam = user?.email ? `?creatorEmail=${user.email}` : '';
+        fetch(`https://hobbyhub-server-three.vercel.app/groups${emailParam}`)
+            .then(res => res.json())
+            .then(data => {
+                setGroups(data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error("Error fetching groups:", error);
+                setLoading(false);
+            });
     }, [user]);
+
 
     if (loading) return <Loading />;
 
