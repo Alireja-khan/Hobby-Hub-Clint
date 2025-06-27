@@ -7,6 +7,8 @@ const AllGroups = () => {
     const { user } = useContext(AuthContext);
     const [groups, setGroups] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [sortOrder, setSortOrder] = useState('asc'); // asc or desc
+    const [filterCategory, setFilterCategory] = useState('All'); // category filter
 
     useEffect(() => {
         const emailParam = user?.email ? `?creatorEmail=${user.email}` : '';
@@ -22,47 +24,89 @@ const AllGroups = () => {
             });
     }, [user]);
 
-
     if (loading) return <Loading />;
 
+    // Filter groups based on selected category
+    const filteredGroups = groups.filter(group =>
+        filterCategory === 'All' ? true : group.hobbyCategory === filterCategory
+    );
+
+    // Sort groups based on groupName
+    const sortedGroups = [...filteredGroups].sort((a, b) => {
+        const nameA = a.groupName.toLowerCase();
+        const nameB = b.groupName.toLowerCase();
+        if (sortOrder === 'asc') {
+            return nameA.localeCompare(nameB);
+        } else {
+            return nameB.localeCompare(nameA);
+        }
+    });
+
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">All Hobby Groups</h1>
 
-            {groups.length === 0 ? (
+            {/* Sorting & Filtering Controls */}
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                <div className="flex items-center gap-2">
+                    <label htmlFor="sort" className="text-gray-700 font-medium">Sort by:</label>
+                    <select
+                        id="sort"
+                        className="border rounded-lg px-3 py-2"
+                        value={sortOrder}
+                        onChange={(e) => setSortOrder(e.target.value)}
+                    >
+                        <option value="asc">Name: A-Z</option>
+                        <option value="desc">Name: Z-A</option>
+                    </select>
+                </div>
+
+                <div className="flex items-center gap-2">
+                    <label htmlFor="filter" className="text-gray-700 font-medium">Filter by Category:</label>
+                    <select
+                        id="filter"
+                        className="border rounded-lg px-3 py-2"
+                        value={filterCategory}
+                        onChange={(e) => setFilterCategory(e.target.value)}
+                    >
+                        <option value="All">All</option>
+                        {/* Dynamically render categories from groups */}
+                        {[...new Set(groups.map(g => g.hobbyCategory))].map((cat) => (
+                            <option key={cat} value={cat}>{cat}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+
+            {/* Groups Grid */}
+            {sortedGroups.length === 0 ? (
                 <p className="text-center text-gray-600">No groups found.</p>
             ) : (
-                <div className="w-full overflow-x-auto">
-                    <table className="min-w-[640px] md:min-w-full bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden">
-                        <thead className="bg-gray-100 text-gray-700 text-left">
-                            <tr>
-                                <th className="py-3 px-4">#</th>
-                                <th className="py-3 px-4">Group Name</th>
-                                <th className="py-3 px-4">Category</th>
-                                <th className="py-3 px-4">Location</th>
-                                <th className="py-3 px-4">Max Members</th>
-                                <th className="py-3 px-4 text-center">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {groups.map((group, index) => (
-                                <tr key={group._id} className="border-t hover:bg-gray-50">
-                                    <td className="py-3 px-4">{index + 1}</td>
-                                    <td className="py-3 px-4 font-semibold">{group.groupName}</td>
-                                    <td className="py-3 px-4">{group.hobbyCategory}</td>
-                                    <td className="py-3 px-4">{group.location}</td>
-                                    <td className="py-3 px-4">{group.maxMembers}</td>
-                                    <td className="py-3 px-4 text-center">
-                                        <Link to={`/groupDetails/${group._id}`}>
-                                            <button className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold">
-                                                See More
-                                            </button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    {sortedGroups.map((group) => (
+                        <div key={group._id} className="bg-white rounded-3xl shadow-lg overflow-hidden transition hover:shadow-xl">
+                            <div className="relative h-48">
+                                <img
+                                    src={group.imageUrl || 'https://i.ibb.co/008N2TQ/Team-spirit-pana-1.png'}
+                                    alt={group.groupName}
+                                    className="w-full h-full object-cover"
+                                />
+                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent px-4 py-8"></div>
+                            </div>
+                            <div className='pl-4 pt-4'>
+                                <h2 className="text-lg font-semibold">{group.groupName}</h2>
+                            </div>
+                            <div className="px-4 pb-4 pt-2 flex justify-between items-center">
+                                <div>
+                                    <p className="text-sm text-gray-500 font-medium">Category: {group.hobbyCategory}</p>
+                                    <p className="text-sm text-gray-500">Max Members: {group.maxMembers}</p>
+                                </div>
+                                <Link to={`/groupDetails/${group._id}`}>
+                                    <button className="bg-blue-100 hover:bg-blue-200 font-semibold text-sm px-4 py-2 rounded-xl">View</button>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

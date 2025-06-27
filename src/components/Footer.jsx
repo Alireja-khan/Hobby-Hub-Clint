@@ -1,4 +1,5 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -7,12 +8,27 @@ const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center md:text-left">
 
 
-                    <div>
-                        <h2 className="text-2xl font-bold text-white mb-4">HobbyHub</h2>
-                        <p className="text-sm text-gray-400">
+                    <div className="">
+                        <div className="inline-flex items-center justify-center mb-2">
+                            <Link to="/">
+                                <img
+                                    src="https://i.ibb.co/xQT91X3/puzzle-1.png"
+                                    className="w-10 h-10"
+                                    alt="HobbyHub Logo"
+                                />
+                            </Link>
+                            <Link
+                                to="/"
+                                className="text-2xl font-bold rounded-lg p-3 transition"
+                            >
+                                HobbyHub
+                            </Link>
+                        </div>
+                        <p className="text-sm text-gray-400 max-w-xs mx-auto">
                             Bringing passionate people together through shared interests.
                         </p>
                     </div>
+
 
 
                     <div>
@@ -39,7 +55,7 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
                         <div className="flex justify-center md:justify-start gap-4 text-xl">
-                            <a href="/" className="hover:text-white transition"><FaFacebook /></a>
+                            <a href="https://www.facebook.com/izack.khan.2025" className="hover:text-white transition"><FaFacebook /></a>
                             <a href="/" className="hover:text-white transition"><FaTwitter /></a>
                             <a href="/" className="hover:text-white transition"><FaInstagram /></a>
                             <a href="/" className="hover:text-white transition"><FaLinkedin /></a>

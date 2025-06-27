@@ -15,6 +15,7 @@ const hobbyCategories = [
     'Cooking',
     'Reading',
     'Writing',
+    'Hiking',
     'Other',
 ];
 

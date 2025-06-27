@@ -2,10 +2,10 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { TiGroup } from "react-icons/ti";
-import { AuthContext } from '../context/AuthProvider';
-import Loading from './Loading';
+import { AuthContext } from '../../../context/AuthProvider';
+import Loading from '../../Loading';
 
-const MyGroups = () => {
+const DashMyGroups = () => {
     const { user } = useContext(AuthContext);
     const [myGroups, setMyGroups] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -125,4 +125,4 @@ const MyGroups = () => {
     );
 };
 
-export default MyGroups;
+export default DashMyGroups;

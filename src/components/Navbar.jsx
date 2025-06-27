@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -19,22 +21,61 @@ const Navbar = () => {
             });
     };
 
+    const location = useLocation();
+
+    const routes = [
+        { to: '/', label: 'Home' },
+        { to: '/allGroups', label: 'All Groups' },
+        { to: '/aboutUs', label: 'About Us' },
+        { to: '/contact', label: 'Contact' },
+        { to: '/support', label: 'Support' },
+        { to: '/createGroup', label: 'Create Group', auth: true },
+        { to: '/myGroup', label: 'My Groups', auth: true },
+        { to: '/dashboard', label: 'Dashboard', auth: true },
+    ];
+
     const navLinks = (
-        <>
-            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/">Home</NavLink>
-            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/allGroups">All Groups</NavLink>
-            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/createGroup">Create Group</NavLink>
-            <NavLink className="px-3 py-2 rounded-lg hover:shadow-lg transition font-semibold" to="/myGroup">My Groups</NavLink>
-        </>
+        <div className="relative flex flex-col lg:flex-row gap-2 lg:gap-4">
+            {routes.map(({ to, label, auth }) => {
+                if (auth && !user) return null;
+                const isActive = location.pathname === to;
+
+                return (
+                    <div key={to} className="relative">
+                        {isActive && (
+                            <motion.div
+                                layoutId="active-nav"
+                                className="absolute shadow-md inset-0 bg-blue-100 rounded-lg z-0"
+                                transition={{ type: 'spring', stiffness: 600, damping: 100 }}
+                            />
+                        )}
+                        <NavLink
+                            to={to}
+                            className="relative hover:bg-blue-50 z-10 px-3 py-2 rounded-lg font-semibold transition-colors duration-300"
+                        >
+                            {label}
+                        </NavLink>
+                    </div>
+                );
+            })}
+        </div>
     );
 
+
+    // Primary-Color #669CD8
+    // Secondary-Color #BFDBFE
+
     return (
-        <div className="navbar bg-white shadow-md px-4 sticky top-0 z-50 flex flex-wrap items-center justify-between">
+        <div className="navbar bg-white shadow-md px-15 sticky top-0 z-50 flex flex-wrap items-center justify-between">
 
             <div className="navbar-start flex items-center justify-between w-full lg:w-auto">
-                <Link to="/" className="text-2xl font-bold rounded-lg p-3 hover:shadow-lg transition">
-                    HobbyHub
-                </Link>
+
+                <div className='flex justify-center items-center'>
+                    <Link to='/'><img src="https://i.ibb.co/xQT91X3/puzzle-1.png" className='w-10 h-10' alt="" /></Link>
+                    <Link to="/" className="text-2xl font-bold rounded-lg p-3 transition">
+                        HobbyHub
+                    </Link>
+                </div>
 
 
                 <div className="lg:hidden">

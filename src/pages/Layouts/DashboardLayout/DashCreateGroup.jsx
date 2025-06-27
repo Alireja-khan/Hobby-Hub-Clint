@@ -1,7 +1,7 @@
 import React, { use } from 'react';
-import { AuthContext } from '../context/AuthProvider';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider';
 
 const hobbyCategories = [
   'Drawing & Painting',
@@ -21,7 +21,7 @@ const statusCategories = [
   'outgoing'
 ];
 
-const CreateGroup = () => {
+const DashCreateGroup = () => {
   const { user } = use(AuthContext);
   console.log(user.displayName, user.email);
 
@@ -206,4 +206,4 @@ const CreateGroup = () => {
   );
 };
 
-export default CreateGroup;
+export default DashCreateGroup;
