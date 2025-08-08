@@ -109,6 +109,6 @@ Feel free to explore the platform and connect through hobbies with **HobbyHub**!
 - Open in browser
 - Go to: http://localhost:5173
 
-- 📬 Contact
+## 📬 Contact
 - Developer: Md. Alireja Khan
 - 📧 Email: ali2reja@.com
