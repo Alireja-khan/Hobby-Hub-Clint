@@ -1,8 +1,9 @@
 # 🌟 HobbyHub – A Local Hobby Group Organizer
 
-🔗 **Live Website:**     (https://hobbyhub-app.web.app/)
-📦 **Client Repo:**     (https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-Alireja-khan)  
-🛠 **Server Repo:**      (https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Alireja-khan)
+## 🔗 Live Website
+
+👉 [Live Link](https://hobbyhub-app.web.app/)    
+👉 [Server Repository]([https://github.com/Programming-Hero-Web-Course4/b11a11-server-side-Alireja-khan](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Alireja-khan))
 
 ---
 
@@ -32,14 +33,14 @@
 - **Backend**: Node.js, Express, MongoDB
 - **Hosting**: Surge (Client), Vercel (Server)
 - **Packages Used**:
-  - `react-awesome-reveal` – for animations
-  - `react-simple-typewriter` – for banner text effect
-  - `react-hot-toast` – for error/success messages
-  - `sweetalert2` – for action confirmations
-  - `lottie-react` – for 404 & loading animations
-  - `react-countup` – for count animations
-  - `react-simple-typewriter` – for type animations
-  - `react-icons/go` – for icons
+- **react-awesome-reveal** – for animations
+- **react-simple-typewriter** – for banner text effect
+- **react-hot-toast** – for error/success messages
+- **sweetalert2** – for action confirmations
+- **lottie-react** – for 404 & loading animations
+- **react-countup** – for count animations
+- **react-simple-typewriter** – for type animations
+- **react-icons/go** – for icons
 
 ---
 
@@ -59,13 +60,6 @@ A custom 404 page with Lottie background and redirect option.
 
 ---
 
-## 💡 Extra Challenges Implemented
-
-- ✅ Custom toast and SweetAlert feedback
-- ✅ Avoided use of Lorem Ipsum and default browser alerts
-
----
-
 ## 📝 Environment Variables
 
 Firebase and MongoDB sensitive keys are stored securely in `.env.local`.
@@ -79,3 +73,42 @@ Pages like Create Group, Group Details, My Groups, and Update Group are protecte
 ---
 
 Feel free to explore the platform and connect through hobbies with **HobbyHub**! 🚀
+
+---
+
+## 🛠 How to Run Locally
+-- Clone the repository
+
+- Copy
+- Edit
+- git clone https://github.com/your-username/hobbyhub.git
+- cd hobbyhub
+- Install dependencies
+
+- Copy
+- Edit
+- npm install
+- Add environment variables
+- Create .env.local file in the root:
+
+- ini
+- Copy
+- Edit
+- VITE_apiKey=your_firebase_api_key
+- VITE_authDomain=your_firebase_auth_domain
+- VITE_projectId=your_firebase_project_id
+- VITE_storageBucket=your_firebase_storage_bucket
+- VITE_messagingSenderId=your_firebase_sender_id
+- VITE_appId=your_firebase_app_id
+- VITE_SERVER_URL=your_backend_url
+- Run the project
+
+- Copy
+- Edit
+- npm run dev
+- Open in browser
+- Go to: http://localhost:5173
+
+- 📬 Contact
+- Developer: Md. Alireja Khan
+- 📧 Email: ali2reja@.com
