@@ -3,7 +3,7 @@
 ## 🔗 Live Website
 
 👉 [Live Link](https://hobbyhub-app.web.app/)
-👉 [Server Repository]([https://github.com/Programming-Hero-Web-Course4/b11a11-server-side-Alireja-khan](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Alireja-khan)
+👉 [Server Repository](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-Alireja-khan)
 
 ---
 
